@@ -1,22 +1,10 @@
 const express = require('express');
-const mysql = require('mysql');
+
 const cors = require('cors');
 
 const PORT = process.env.PORT || 3000;
 
-const conexion = mysql.createConnection({
-    host : 'localhost',
-    database : 'prueba',
-    user : 'root',
-    password : '',
-});
-
-conexion.connect(function(err) {
-    if (err) {
-        console.error('Error de conexion: ' + err.stack);
-        return;
-    }
-});
+const conexion = require('./config');
 
 const app = express();
 
