@@ -44,7 +44,7 @@ app.get('/autos/:id', async (req, res) =>{
 
 })
 
-app.listen(PORT, () => console.log(`Server runnig in port ${PORT}`))
+app.listen(PORT, () => console.log(`Server runnig in PORT => ${PORT}`))
 
 
 
