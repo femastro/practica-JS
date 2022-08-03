@@ -4,7 +4,7 @@ const cors = require('cors');
 
 const PORT = process.env.PORT || 3000;
 
-const conexion= mysql.createConnection({
+const conexion = mysql.createConnection({
     host : 'localhost',
     database : 'prueba',
     user : 'root',
