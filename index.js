@@ -12,7 +12,7 @@ $(document).ready(function(){
     
     ////// Carga del SELECT ///////
     // CONSULTA A API devuelve Un JSON ///        
-    ( async () => { 
+    ( async () => {
         const response = await fetch(URL);
         const autos = await response.json();
         let op = `<option value="0">Seleccionar ...</option>`;
