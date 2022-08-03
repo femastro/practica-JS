@@ -10,22 +10,18 @@ $(document).ready(function(){
         {id: 4, name:'Volkswagen'}
     ];
     
-    ////// Carga del SELECT ///////           
+    ////// Carga del SELECT ///////
+    // CONSULTA A API devuelve Un JSON ///        
     ( async () => { 
         const response = await fetch(URL);
         const autos = await response.json();
-        console.log(autos);
         let op = `<option value="0">Seleccionar ...</option>`;
-    
         for (auto of autos){
             let opciones =`<option value="${auto.id}">${auto.id}- ${auto.name}</option>`;
             op = op + opciones;
         }
-    
         $('#numeros').html(op);
     })();
-    
-
     ///////////////////////////////
 
     $('#boton').click(function(){
