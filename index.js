@@ -24,11 +24,26 @@ $(document).ready(function(){
     })();
     ///////////////////////////////
 
-    $('#boton').click(function(){
-        $("#texto").html('Oprimio el boton');
-        $('#imagen').attr('src', `img/0.jpg`);
-        $('#numeros').val(0);
+    $('#verImg').click(function(){
+        mostrar();
     })
+
+    $('#boton').click(function(){
+        mostrar();
+    })
+
+    function mostrar(){
+        var id = $('#numeros').val();
+        ( async () => {
+            const response = await fetch(URL+'/'+id);
+            const auto = await response.json();
+            if (auto[0] == undefined){
+                alert('Error 404, Image not found !')
+            }else{
+                location.href=`file:///Users/fernando/Desktop/directos/node/home.html?id=${id}`;
+            }
+        })();
+    }
 
     $('#botonReset').click(function(){
         location.href="index.html";
