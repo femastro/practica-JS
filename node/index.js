@@ -2,6 +2,7 @@ const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 
+
 const conexion = mysql.createConnection({
     host : 'localhost',
     database : 'prueba',
@@ -41,7 +42,6 @@ app.get('/autos/:id', async (req, res) =>{
             return res.json(results);
         }
     });
-
 })
 
 app.listen(PORT, () => console.log(`Server runnig in PORT => ${PORT}`))
