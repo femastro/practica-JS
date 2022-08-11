@@ -37,11 +37,16 @@
       <div class="col-6">
         <h4>DATOS :</h4>
         <hr>
-        <p><b>Description : </b><span id="description"></span></p>
-        <hr>
-        <p><b>Color : </b><span id="color"></span></p>
-        <hr>
-        <p><b>Price u$s : </b><span id="price"></span></p>
+        <form id="form">
+          <b>Description : </b><input class="form-control my-2" name="description" id="description">
+          <b>Color : </b><input class="form-control my-2" name="color" id="color">
+          <b>Price u$s : </b><input class="form-control my-2" name="price" id="price">
+        </form>
+          <div class="row mt-5">
+            <div class="col-12 text-center">
+              <button class="btn btn-primary" id="btnUpdate">Update</button>
+            </div>
+          </div>
       </div>
     </div>
     <br>

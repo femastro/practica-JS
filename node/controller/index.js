@@ -35,7 +35,21 @@ const getById = async (req, res) =>{
     });
 };
 
+const update = async (req, res) =>{
+    const {id} = req.params;
+    const { description, color, price } = req.body;
+
+    conexion.query(`UPDATE autos SET description='${description}', color='${color}', price=${price} where id=${id}`, function (error, results) {
+        console.log(error);
+        if(results){
+            return res.json({ message: "Register update !" });
+        }
+        return res.json({ message :  error.sqlMessage});
+    });
+};
+
 module.exports = {
     all,
-    getById
+    getById,
+    update
 }

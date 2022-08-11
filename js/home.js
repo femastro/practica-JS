@@ -7,8 +7,22 @@ $(document).ready(function(){
     ( async () => {
         const response = await fetch(URL+'/'+id);
         const auto = await response.json();
-        $('#description').html(auto[0].description);
-        $('#color').html(auto[0].color);
-        $('#price').html(auto[0].price);
+        $('#description').val(auto[0].description);
+        $('#color').val(auto[0].color);
+        $('#price').val(auto[0].price);
     })();
+
+    $('#btnUpdate').click(function(){
+        var form = document.getElementById('form');
+
+        const data = new FormData(form);
+        const payload = new URLSearchParams(data);
+   
+        ( async () => {
+            const response = await fetch(URL+'/update/'+id, { method: 'POST', body: payload });
+            const result = await response.json();
+            alert(result.message);
+            window.location.reload();
+        })();
+    })
   })
