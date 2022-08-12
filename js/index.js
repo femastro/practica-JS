@@ -32,6 +32,10 @@ $(document).ready(function(){
         mostrar();
     })
 
+    $('#botonNew').click(function(){
+        location.href="new.html";
+    })
+
     function mostrar(){
         var id = $('#numeros').val();
         ( async () => {
@@ -40,7 +44,7 @@ $(document).ready(function(){
             if (auto[0] == undefined){
                 alert('Error 404, Image not found !')
             }else{
-                location.href=`file:///Users/fernando/Desktop/directos/node/home.html?id=${id}`;
+                location.href=`home.html?id=${id}`;
             }
         })();
     }
@@ -50,15 +54,25 @@ $(document).ready(function(){
     })
 
     $('#numeros').change(function(){
-        var valor = $('#numeros').val();
-        if (valor != 0){
-            $("#texto").html(`Eligio el auto # ${valor}`);
-            $('#imagen').attr('src', `img/${valor}.jpg`);
-        }else{
-            var texto = "Elegir una opción !";
-            $('#imagen').attr('src', `img/0.jpg`);
-            $("#texto").html(`<b>${texto}</b>`);
-        }
+        var id = $('#numeros').val();
+
+        ( async () => {
+            const response = await fetch(URL+'/'+id);
+            const auto = await response.json();
+            if (auto[0] == undefined){
+                alert('Error 404, Image not found !')
+            }else{
+                if (id != 0){
+                    $("#texto").html(`Eligio el auto # ${id}`);
+                    $('#imagen').attr('src', `img/${auto[0].image}`);
+                }else{
+                    var texto = "Elegir una opción !";
+                    $('#imagen').attr('src', `img/0.jpg`);
+                    $("#texto").html(`<b>${texto}</b>`);
+                }
+            }
+        })();
+
     })
 
 })

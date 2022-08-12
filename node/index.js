@@ -13,6 +13,7 @@ app.use((req, res, next) => {
     console.log(`${req.url} - ${req.method}`);
     next();
 })
+app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : false }));
 

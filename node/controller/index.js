@@ -36,13 +36,33 @@ const getById = async (req, res) =>{
 };
 
 const update = async (req, res) =>{
-    const {id} = req.params;
-    const { description, color, price } = req.body;
+    const { id } = req.params;
+    const { name, description, color, price } = req.body;
 
-    conexion.query(`UPDATE autos SET description='${description}', color='${color}', price=${price} where id=${id}`, function (error, results) {
-        console.log(error);
+    conexion.query(`UPDATE autos SET name='${name}', description='${description}', color='${color}', price=${price} where id=${id}`, function (error, results) {
         if(results){
             return res.json({ message: "Register update !" });
+        }
+        return res.json({ message :  error.sqlMessage});
+    });
+};
+
+const newAuto = (req, res) =>{
+    const image = req.file.filename;
+    const { name, description, color, price } = req.body;
+    conexion.query(`INSERT INTO autos VALUES (null, '${name}', '${description}', '${color}', ${price}, '${image}')`, function (error, results) {
+        if(results){
+            return res.json({ message: "New Register Created !" });
+        }
+        return res.json({ message :  error.sqlMessage});
+    });
+};
+
+const deleteAuto = (req, res) =>{
+    const { id } = req.params;
+    conexion.query(`DELETE FROM autos WHERE id=${id}`, function (error, results) {
+        if(results){
+            return res.json({ message: "Register Deleted !" });
         }
         return res.json({ message :  error.sqlMessage});
     });
@@ -51,5 +71,7 @@ const update = async (req, res) =>{
 module.exports = {
     all,
     getById,
-    update
+    update,
+    newAuto,
+    deleteAuto
 }

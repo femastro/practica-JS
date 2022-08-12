@@ -2,14 +2,17 @@ $(document).ready(function(){
     const URL = 'http://localhost:3000/autos';
 
     let params = new URLSearchParams(location.search);
-    var id = params.get('id');
-    $('#imagen').attr('src', `img/${id}.jpg`);
+    const id = params.get('id');
+
+    
     ( async () => {
         const response = await fetch(URL+'/'+id);
         const auto = await response.json();
+        $('#name').val(auto[0].name);
         $('#description').val(auto[0].description);
         $('#color').val(auto[0].color);
         $('#price').val(auto[0].price);
+        $('#imagen').attr('src', `img/${auto[0].image}`);
     })();
 
     $('#btnUpdate').click(function(){
@@ -22,7 +25,19 @@ $(document).ready(function(){
             const response = await fetch(URL+'/update/'+id, { method: 'POST', body: payload });
             const result = await response.json();
             alert(result.message);
-            window.location.reload();
+            location.href="index.html";
         })();
+    })
+    $('#btnDelete').click(function(){
+        var msj = `Oprimir ACEPTA ó OK para BORRAR el Registro # ${id}!`;
+
+        if (confirm(msj)){   
+            ( async () => {
+                const response = await fetch(URL+'/delete/'+id, {method: 'DELETE'});
+                const result = await response.json();
+                alert(result.message);
+                location.href ="index.html";
+            })();
+        }
     })
   })
