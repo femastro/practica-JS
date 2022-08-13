@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    const URL = 'http://localhost:3000/autos';
+    const URL = 'https://arcane-mesa-98209.herokuapp.com/autos';
 
     $('#btnSend').click(function(){   
         var form = document.getElementById('form');

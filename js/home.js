@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    const URL = 'http://localhost:3000/autos';
+    const URL = 'https://arcane-mesa-98209.herokuapp.com/autos';
 
     let params = new URLSearchParams(location.search);
     const id = params.get('id');
