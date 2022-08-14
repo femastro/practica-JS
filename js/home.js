@@ -1,7 +1,6 @@
-const fs = require('fs');
-
 $(document).ready(function(){
-    const URL = 'https://arcane-mesa-98209.herokuapp.com/autos';
+    
+    const URL = 'http://localhost:3000/autos';
 
     let params = new URLSearchParams(location.search);
     const id = params.get('id');
@@ -32,19 +31,13 @@ $(document).ready(function(){
     })
     $('#btnDelete').click(function(){
         var msj = `Oprimir ACEPTA ó OK para BORRAR el Registro # ${id}!`;
+        var image = $('#imagen').attr('src');
 
         if (confirm(msj)){   
             ( async () => {
                 const response = await fetch(URL+'/delete/'+id, {method: 'DELETE'});
                 const result = await response.json();
                 alert(result.message);
-                fs.unlink(`img/${imagen}`)
-                .then(() => {
-                    console.log('File removed')
-                    location.href ="index.html";
-                }).catch(err => {
-                    console.error('Something wrong happened removing the file', err)
-                })
             })();
         }
     })

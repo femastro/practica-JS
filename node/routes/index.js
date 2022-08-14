@@ -8,7 +8,7 @@ var fecha = Date.now();
 var ruta = multer.diskStorage(
     {
         destination: (req, file, callback) => {
-            callback(null,'img/');
+            callback(null,'../img/');
         },
         filename: (req, file, callback) => {
             callback(null, fecha+"_"+file.originalname);
@@ -16,7 +16,7 @@ var ruta = multer.diskStorage(
     }
 );
 
-var cargar = multer({ storage: ruta})
+var cargar = multer({ storage: ruta })
 
 
 routes.get('/autos', controller.all);

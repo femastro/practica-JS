@@ -2,10 +2,10 @@ const mysql = require('mysql');
 
 // Conexion to DB
 const conexion = mysql.createConnection({
-    host : '167.250.5.45',
-    database : 'brown_mastrosoft',
-    user : 'brown_fer',
-    password : 'b978434c1668b0005b2303ed66051b9a',
+    host : 'localhost',
+    database : 'prueba',
+    user : 'root',
+    password : '',
 });
 
 conexion.connect(function(err) {
@@ -50,6 +50,7 @@ const update = async (req, res) =>{
 const newAuto = (req, res) =>{
     const image = req.file.filename;
     const { name, description, color, price } = req.body;
+    
     conexion.query(`INSERT INTO autos VALUES (null, '${name}', '${description}', '${color}', ${price}, '${image}')`, function (error, results) {
         if(results){
             return res.json({ message: "New Register Created !" });
