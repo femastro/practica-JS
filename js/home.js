@@ -36,7 +36,13 @@ $(document).ready(function(){
                 const response = await fetch(URL+'/delete/'+id, {method: 'DELETE'});
                 const result = await response.json();
                 alert(result.message);
-                location.href ="index.html";
+                fs.unlink(`img/${imagen}`)
+                .then(() => {
+                    console.log('File removed')
+                    location.href ="index.html";
+                }).catch(err => {
+                    console.error('Something wrong happened removing the file', err)
+                })
             })();
         }
     })

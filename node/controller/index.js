@@ -60,6 +60,7 @@ const newAuto = (req, res) =>{
 
 const deleteAuto = (req, res) =>{
     const { id } = req.params;
+
     conexion.query(`DELETE FROM autos WHERE id=${id}`, function (error, results) {
         if(results){
             return res.json({ message: "Register Deleted !" });
