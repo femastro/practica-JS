@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 $(document).ready(function(){
     const URL = 'https://arcane-mesa-98209.herokuapp.com/autos';
 
