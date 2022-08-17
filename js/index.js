@@ -35,7 +35,7 @@ $(document).ready(function(){
         ( async () => {
             const response = await fetch(URL+'/'+id);
             const auto = await response.json();
-            if (auto[0] == undefined){
+            if (auto == undefined){
                 alert('Error 404, Image not found !')
             }else{
                 location.href=`home.html?id=${id}`;
@@ -53,7 +53,7 @@ $(document).ready(function(){
         ( async () => {
             const response = await fetch(URL+'/'+id);
             const auto = await response.json();
-            if (auto[0] == undefined){
+            if (auto == undefined){
                 alert('Error 404, Image not found !')
             }else{
                 if (id != 0){
