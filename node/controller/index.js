@@ -26,13 +26,18 @@ const all = async (req, res) =>{
 
 const getById = async (req, res) =>{
     const {id} = req.params;
-    conexion.query(`SELECT * FROM autos where id=${id}`, function (error, results) {
-        if (!results.length > 0){
-            return res.json({ message: "Not Found !" });
-        }else{
-            return res.json(results);
-        }
-    });
+    if (id != 0){
+        conexion.query(`SELECT * FROM autos where id=${id}`, function (error, results) {
+            if (!results.length > 0){
+                return res.json({ message: "Not Found !" });
+            }else{
+                return res.json(results);
+            }
+            
+        });
+    }else{
+        return res.json({ message: "Not Found !" });
+    }
 };
 
 const update = async (req, res) =>{

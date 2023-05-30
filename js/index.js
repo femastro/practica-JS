@@ -30,17 +30,15 @@ $(document).ready(function(){
         location.href="new.html";
     })
 
-    function mostrar(){
+    async function mostrar(){
         var id = $('#numeros').val();
-        ( async () => {
-            const response = await fetch(URL+'/'+id);
-            const auto = await response.json();
-            if (auto == undefined){
-                alert('Error 404, Image not found !')
-            }else{
-                location.href=`home.html?id=${id}`;
-            }
-        })();
+        const response = await fetch(URL+'/'+id);
+        const auto = await response.json();
+        if (auto == undefined){
+            alert('Error 404, Image not found !')
+        }else{
+            location.href=`home.html?id=${id}`;
+        }       
     }
 
     $('#botonReset').click(function(){
@@ -57,7 +55,7 @@ $(document).ready(function(){
                 alert('Error 404, Image not found !')
             }else{
                 if (id != 0){
-                    $("#texto").html(`Eligio el auto # ${id}`);
+                    $("#texto").html(`Para ver el auto click en la imágen o en el boton View : Auto => ${id}`);
                     $('#imagen').attr('src', `img/${auto[0].image}`);
                 }else{
                     var texto = "Elegir una opción !";

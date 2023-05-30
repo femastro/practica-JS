@@ -3,20 +3,20 @@ $(document).ready(function () {
 
   let params = new URLSearchParams(location.search);
   const id = params.get("id");
-  console.log(id);
-  if (id == "null") {
-    $("#auto").html('<h4 class="text-center mt-5 mb-5">No Hay Registro<h4>');
-  } else {
-    (async () => {
-      const response = await fetch(URL + "/" + id);
-      const auto = await response.json();
+  (async () => {
+    const response = await fetch(URL + "/" + id);
+    const auto = await response.json();
+    if (auto.message){
+      $("#auto").html(`<h4 class="text-center mt-5 mb-5">Auto, `+auto.message+`<h4>`);
+    }else{
       $("#name").val(auto[0].name);
       $("#description").val(auto[0].description);
       $("#color").val(auto[0].color);
       $("#price").val(auto[0].price);
       $("#imagen").attr("src", `img/${auto[0].image}`);
-    })();
-  }
+    }
+  })();
+ 
 
   $("#btnUpdate").click(function () {
     var form = document.getElementById("form");
